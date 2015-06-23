@@ -3,8 +3,8 @@ var app = express();
 var server = require('http').createServer(app);
 var path = require('path');
 
-var GPIO = require('onoff').Gpio,
-  green = new GPIO(14, 'out');
+//var GPIO = require('onoff').Gpio,
+//  green = new GPIO(14, 'out');
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -29,7 +29,7 @@ io.on('connection', function(socket) {
   socket.on('toggle', function() {
     console.log('toggle called');
     
-    var state = green.readSync();
-    green.writeSync(Number(!state));
+//    var state = green.readSync();
+//    green.writeSync(Number(!state));
   })
 });
