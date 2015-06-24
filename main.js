@@ -1,10 +1,11 @@
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var path = require('path');
+var express = require('express'); var app = express(); var server = 
+require('http').createServer(app); var path = require('path');
 
+var raspi = require('raspi-io');
 var five = require('johnny-five');
-var board = new five.Board();
+var board = new five.Board({
+  io: new raspi()
+});
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -22,9 +23,12 @@ var server = app.listen(3000, function () {
 
 });
 
+var led = undefined;
+var ledState = false;
 board.on("ready", function() {
-  var led = new five.Led(14);
-  led.blink(500);
+  led = new five.Led('P1-8');
+  led.off();
+//  led.blink(500);
 });
 
 var io = require('socket.io')(server);
@@ -34,5 +38,10 @@ io.on('connection', function(socket) {
   socket.on('toggle', function() {
     console.log('toggle called');
     
+    if (led !== undefined) {
+      console.log('ledState: ' + ledState);
+      ledState === true ? led.off() : led.on();
+      ledState = !ledState;      
+    }
   });
 });
