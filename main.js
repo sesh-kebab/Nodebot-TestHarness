@@ -31,7 +31,7 @@ board.on("ready", function() {
 	led = new five.Led('P1-8');
 	led.off();
 	
-	var proximity = new five.IR.Proximity({
+	var proximity = new five.Proximity({
     	controller: 'HCSR04',
     	pin: 'P1-10'
   	});
