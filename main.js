@@ -1,12 +1,12 @@
 var express = require('express'); 
-var app = express(); var server = 
-require('http').createServer(app); 
+var app = express(); 
+var server = require('http').createServer(app); 
 var path = require('path');
 
 var raspi = require('raspi-io');
 var five = require('johnny-five');
 
-var board = new five.board({
+var board = new five.Board({
 	io: new raspi()
 });
 
