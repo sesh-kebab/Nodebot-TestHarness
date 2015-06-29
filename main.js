@@ -30,6 +30,15 @@ var ledState = false;
 board.on("ready", function() {
 	led = new five.Led('P1-8');
 	led.off();
+	
+	var proximity = new five.IR.Proximity({
+    	controller: 'HCSR04',
+    	pin: 'P1-10'
+  	});
+	  
+	proximity.on('data', function() {
+		console.log(this);
+	});
 });
 
 var io = require('socket.io')(server);
