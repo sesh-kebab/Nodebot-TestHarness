@@ -42,7 +42,11 @@ function initalisePins() {
 	  console.log('state.value' + state.value);
 	});
 	
-	pin7.low();
+	var pin10 = new five.Pin(10);
+	pin10.query(function(state) {
+	  console.log(state);
+	  console.log('state.value' + state.value);
+	});
 	
 	var ignoreState = false;
 	var timer = new Date();
