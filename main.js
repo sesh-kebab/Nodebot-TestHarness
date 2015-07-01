@@ -63,7 +63,7 @@ function initalisePins() {
 			ignoreState = false;
 		}, 10);
 		
-	}, 100);
+	}, 1000);
 }
 
 var io = require('socket.io')(server);
