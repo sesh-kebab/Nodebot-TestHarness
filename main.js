@@ -36,17 +36,17 @@ board.on("ready", function() {
 
 
 function initalisePins() {
-	var pin10 = new five.Pin(10);
-	pin10.query(function(state) {
+	var pin7 = new five.Pin(7);
+	pin7.query(function(state) {
 	  console.log(state);
 	  console.log('state.value' + state.value);
 	});
 	
-	pin10.low();
+	pin7.low();
 	
 	var ignoreState = false;
 	var timer = new Date();
-	pin10.read(function(error, value) {
+	pin7.read(function(error, value) {
 		if (ignoreState === true)
 			return;
 		
@@ -61,11 +61,11 @@ function initalisePins() {
 	setInterval(function() {
 		ignoreState = true;
 		timer = new Date();
-		pin10.high();
+		pin7.high();
 		console.log('set pin10 high');
 		
 		setTimeout(function() {
-			pin10.low();
+			pin7.low();
 			timer = new Date();
 			ignoreState = false;
 			
