@@ -47,7 +47,7 @@ function initalisePins() {
 		if (ignoreState === true)
 			return;
 		
-		if (error !== undefined)
+		if (error !== undefined && error !== null)
 			console.log('Error:' + error);
 		else
 			console.log('Response recieved in :' + (new Date() - timer));
