@@ -39,7 +39,10 @@ function initalisePins() {
 	var pin10 = new five.Pin(10);
 	pin10.query(function(state) {
 	  console.log(state);
+	  console.log('state.value' + state.value);
 	});
+	
+	pin10.low();
 	
 	var ignoreState = false;
 	var timer = new Date();
