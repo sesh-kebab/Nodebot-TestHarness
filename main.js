@@ -57,6 +57,9 @@ function initalisePins() {
 		if (error !== undefined && error !== null)
 			console.log('Error:' + error);
 		else{
+			if (value == 0)		//only output when value is high
+				return;
+			
 			console.log(value);
 			console.log('Response recieved in :' + (new Date() - timer));	
 		}
