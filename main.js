@@ -30,16 +30,27 @@ var ledState = false;
 board.on("ready", function() {
 	led = new five.Led('P1-8');
 	led.off();
-	
-//	var proximity = new five.Proximity({
-//    	controller: 'HCSR04',
-//    	pin: 'P1-10'
-//  	});
-//	  
-//	proximity.on('data', function() {
-//		console.log(this);
-//	});
+
+	initalisePins();
 });
+
+
+function initalisePins() {
+	var pin10 = new five.Pin(10);
+	pin10.query(function(state) {
+	  console.log(state);
+	});
+	
+	var pin11 = new five.Pin(11);
+	pin11.query(function(state) {
+	  console.log(state);
+	});
+	
+	var pin12 = new five.Pin(11);
+	pin12.query(function(state) {
+	  console.log(state);
+	});
+}
 
 var io = require('socket.io')(server);
 io.on('connection', function(socket) { 
