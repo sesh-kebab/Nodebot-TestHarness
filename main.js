@@ -75,10 +75,10 @@ function initalisePins() {
 		
 		setTimeout(function() {
 			pin7.low();
-			timer = new Date();
 			ignoreState = false;
 			
 			console.log('set pin10 low - ' + (new Date() - timer));
+			timer = new Date();
 		}, 10);
 		
 	}, 1000);
