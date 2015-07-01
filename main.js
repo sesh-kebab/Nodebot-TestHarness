@@ -42,21 +42,24 @@ function initalisePins() {
 	});
 	
 	var ignoreState = false;
+	var timer = new Date();
 	pin10.read(function(error, value) {
 		if (ignoreState === true)
 			return;
 		
 		if (error !== undefined)
-			console.log(error);
+			console.log('Error:' + error);
 		else
-			console.log(value);
+			console.log('Response recieved in :' + (new Date() - timer));
 	});
 	
 	setInterval(function() {
 		ignoreState = true;
 		pin10.high();
+		
 		setTimeout(function() {
 			pin10.low();
+			timer = new Date();
 			ignoreState = false;
 		}, 10);
 		
