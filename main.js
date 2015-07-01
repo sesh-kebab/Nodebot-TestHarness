@@ -41,15 +41,26 @@ function initalisePins() {
 	  console.log(state);
 	});
 	
-	var pin11 = new five.Pin(11);
-	pin11.query(function(state) {
-	  console.log(state);
+	var ignoreState = false;
+	pin10.read(function(error, value) {
+		if (ignoreState === true)
+			return;
+		
+		if (error !== undefined)
+			console.log(error);
+		else
+			console.log(value);
 	});
 	
-	var pin12 = new five.Pin(11);
-	pin12.query(function(state) {
-	  console.log(state);
-	});
+	setInterval(function() {
+		ignoreState = true;
+		pin10.high();
+		setTimeout(function() {
+			pin10.low();
+			ignoreState = false;
+		}, 10);
+		
+	}, 100);
 }
 
 var io = require('socket.io')(server);
