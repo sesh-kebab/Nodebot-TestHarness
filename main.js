@@ -55,12 +55,16 @@ function initalisePins() {
 	
 	setInterval(function() {
 		ignoreState = true;
+		timer = new Date();
 		pin10.high();
+		console.log('set pin10 high');
 		
 		setTimeout(function() {
 			pin10.low();
 			timer = new Date();
 			ignoreState = false;
+			
+			console.log('set pin10 low - ' + (new Date() - timer));
 		}, 10);
 		
 	}, 1000);
