@@ -54,6 +54,8 @@ function initalisePins() {
 			console.log('Error:' + error);
 		else
 			console.log('Response recieved in :' + (new Date() - timer));
+			
+		timer = new Date();
 	});
 	
 	setInterval(function() {
