@@ -53,7 +53,7 @@ function initalisePins() {
 		if (error !== undefined && error !== null)
 			console.log('Error:' + error);
 		else
-			console.log('Response recieved in :' + (new Date() - timer));
+			console.log('Response recieved in :' + (new Date() - timer) + ' Value:' + value);
 			
 		timer = new Date();
 	});
