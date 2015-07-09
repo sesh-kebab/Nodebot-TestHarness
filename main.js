@@ -36,71 +36,24 @@ board.on("ready", function() {
 
 
 function initalisePins() {
-	var pinInput = new five.Pin({
-		pin:13,
-		mode:0
-	});
-	pinInput.query(function(state) {
-	  console.log(state);
-	  console.log('state.value' + state.value);
-	});
-	
-	var pinOutput = new five.Pin({
-		pin:11,
-		mode:1
-	});
-	pinOutput.query(function(state) {
-	  console.log(state);
-	  console.log('state.value' + state.value);
-	});
-	
-	var ignoreState = false;
-	var timer = new Date();
-	pinInput.read(function(error, value) {
-		if (ignoreState === true)
-			return;
-		
-		if (error !== undefined && error !== null)
-			console.log('Error:' + error);
-		else{
-			if (value == 0)		//only output when value is high
-				return;
-			
-			console.log(value);
-			console.log('Response recieved in :' + (new Date() - timer));	
-		}
-			
-		timer = new Date();
-	});
-	
-	setInterval(function() {
-		ignoreState = true;
-		timer = new Date();
-		pinOutput.high();
-		console.log('set pin10 high');
-		
-		setTimeout(function() {
-			pinOutput.low();
-			ignoreState = false;
-			
-			console.log('set pin10 low - ' + (new Date() - timer));
-			timer = new Date();
-		}, 10);
-		
-	}, 1000);
 }
 
 var io = require('socket.io')(server);
 io.on('connection', function(socket) { 
-	console.log('user connected');
+	log('user connected');
   
 	socket.on('toggle', function() {
-		console.log('toggle called');
+		log('toggle called');
 		
 		if (led !== undefined) {
-			console.log('ledState: ' + ledState);
+			log('ledState: ' + ledState);
+			
 			ledState === true ? led.off() : led.on();
 			ledState = !ledState;      
 		}
 	});
 });
+
+function log(message) {
+	console.log(message);
+}
